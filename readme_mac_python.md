@@ -11,7 +11,7 @@ This is a note to build radia on python/macOS. When python is updated, you can m
 1. Test `python3 radia_example01.py` in terminal.
 1. Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
 
-Because of fatal errors in triangle.h, 4 files are added from the web site below.
+Because of fatal errors in triangle.h, 4 files are added in this repository from the web site below.
 
 > /cpp/src/ext/tringale/
 > 
@@ -26,5 +26,5 @@ Because of fatal errors in triangle.h, 4 files are added from the web site below
 > https://code.woboq.org/userspace/glibc/include/gnu/stubs.h.html
 >
 
-BTW I have no idea how it works.
+You can also download [original radia](https://github.com/ochubar/Radia) and just add them above. BTW I have no idea how it works.
 Cheer

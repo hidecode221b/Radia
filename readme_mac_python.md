@@ -1,6 +1,6 @@
 # How to make/build the radia on python3.9.5/macOS11.6
 
-This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version 3.9.5, but you can build it in the same way.
+This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version 3.9.5, but you can build it in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c).
 
 1. Download code in zip and unzip it.
 1. Open terminal and `make all` in the radia-master directory. If you have previous build, delete them first with password.

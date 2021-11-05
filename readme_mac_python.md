@@ -27,4 +27,6 @@ Because of fatal errors in triangle.h, 4 files are added in this repository from
 >
 
 You can also download [original radia](https://github.com/ochubar/Radia) and just add them above. BTW I have no idea how it works.
-Cheer
+
+Issue: Segmentation error 11 on radia_example03.py (radia.so might be terminated on 5th pole setup)
+

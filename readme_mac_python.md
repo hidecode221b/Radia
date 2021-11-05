@@ -10,6 +10,7 @@ This is a note to build radia on python/macOS. When python is updated, you can m
 1. Duplicate it and rename it to **radia.so** (delete original radia.so in not neccesary).
 1. Test `python3 radia_example01.py` in terminal.
 1. Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
+1. Test `python3 radia_example01.py` in terminal again.
 
 Because of fatal errors in triangle.h, 4 files are added in this repository from the web site below.
 

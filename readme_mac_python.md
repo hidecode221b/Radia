@@ -4,7 +4,7 @@ This is a note to build radia on python/macOS. When python is updated, you can m
 
 1. Download code in zip and unzip it.
 1. Open terminal and `make all` in the radia-master directory. If you have previous build, delete them first with password.
-1. Move the directory **/env/radia_python/** and `python3 setup.py install` in terminal.
+1. Move the directory **/cpp/py/** and `python3 setup.py install` in terminal.
 1. Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-3.9/radia.cpython-39-darwin.so* (names depend on environment).
 1. Paste it in **/env/radia_python/**.
 1. Duplicate it and rename it to **radia.so** (delete original radia.so in not neccesary).

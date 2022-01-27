@@ -32,5 +32,4 @@ Because of fatal errors in triangle.h, 4 files are added in this repository from
 
 You can also download [original radia](https://github.com/ochubar/Radia) and just add them above. In the other way, we can modify the trinagle.c to delete lines related to fpu_control.h. BTW I have no idea how it works.
 
-Issue: Segmentation 11 error on radia_example03.py (radia.so is terminated on 5th pole setup)
 

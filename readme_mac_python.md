@@ -25,15 +25,15 @@ Download the Radia from this repository and try `make all` again.
 
 Because of fatal errors in triangle.h, 4 files are added in this repository from the web site below.
 
-> /cpp/src/ext/tringale/
-> 
+`/cpp/src/ext/tringale/`
+
 > https://code.woboq.org/userspace/glibc/sysdeps/x86/fpu_control.h.html
 > 
 > https://code.woboq.org/userspace/glibc/include/features.h.html
 > 
 > https://code.woboq.org/userspace/glibc/include/stdc-predef.h.html
 > 
-> /cpp/src/ext/tringale/gnu/
+`/cpp/src/ext/tringale/gnu/`
 > 
 > https://code.woboq.org/userspace/glibc/include/gnu/stubs.h.html
 >

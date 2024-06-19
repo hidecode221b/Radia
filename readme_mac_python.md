@@ -83,7 +83,7 @@ If **permission denied** error appears, add `sudo` in front of `python setup.py 
 
 ### Error: `ld: library not found for -lfftw`
 
-This error originates from the same issue as above, so create a `python` symbolic link. It may happen after `make clean`. If it is not solved, download or unzip the repository and try it again.
+This error originates from the same issue as above, so create a `python` symbolic link. If it is not solved, download or unzip the repository and try it again.
 
 ## Build log file
 

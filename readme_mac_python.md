@@ -1,6 +1,6 @@
 # How to make/build the radia on python3.8.10/macOS10.15.7
 
-This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), and [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
+This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
 - You should install the command line developer tools in the terminal (see details below).
 ```
@@ -11,11 +11,11 @@ xcode-select --install
 sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python
 ```
 - Download the Radia code in zip from this repository and unzip it.
-- Open terminal and build a Radia.so in the radia-master directory.
+- Open terminal and build radia.so in the radia-master directory.
 ```
 make
 ```
-- Change the directory to **/cpp/py/** and build radia.so.
+- Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python`).
 ```
 python setup.py install
 ```
@@ -42,31 +42,16 @@ python radia_example01.py
 
 #### Download the Radia from this repository and try `make` again.
 
-Because of fatal errors in triangle.h, 4 files are added in this repository from the web site below.
+In this repository, `triangle.c` file is modified as below.
 
-`/cpp/src/ext/tringale/`
-
-> https://code.woboq.org/userspace/glibc/sysdeps/x86/fpu_control.h.html
-> 
-> https://code.woboq.org/userspace/glibc/include/features.h.html
-> 
-> https://code.woboq.org/userspace/glibc/include/stdc-predef.h.html
-> 
-`/cpp/src/ext/tringale/gnu/`
-> 
-> https://code.woboq.org/userspace/glibc/include/gnu/stubs.h.html
-
-
-#### Comment out
-
-Comment out in `fpu-control.h` in `trialge.c` [link1](https://github.com/YosysHQ/yosys/issues/334), [link2](https://stackoverflow.com/questions/4271881/newbie-problem-with-gcc-4-2-compiler-mac-osx-fpu-control-h-no-such-file-or-d).
+Comment out in `fpu-control.h` in `triangle.c` because it is not needed in macos [link1](https://github.com/YosysHQ/yosys/issues/334), [link2](https://stackoverflow.com/questions/4271881/newbie-problem-with-gcc-4-2-compiler-mac-osx-fpu-control-h-no-such-file-or-d).
 
 ```
 /* #include <fpu_control.h> */
-/*_FPU_SETCW(cword); */
+/* _FPU_SETCW(cword); */
 ```
 
-You can also download [original radia](https://github.com/ochubar/Radia) and just add them above. In the other way, we can modify the trinagle.c to delete lines related to fpu_control.h. BTW I have no idea how it works.
+You can also download [original radia](https://github.com/ochubar/Radia) and modify `trinagle.c`.
 
 ### Error: `xcode-select: Failed to locate 'python', requesting installation of command line developer tools.`
 
@@ -98,4 +83,8 @@ If **permission denied** error appears, add `sudo` in front of `python setup.py 
 
 ### Error: `ld: library not found for -lfftw`
 
-This error originates from the same issue as above, so create a `python` symbolic link.
+This error originates from the same issue as above, so create a `python` symbolic link. It may happen after `make clean`. If it is not solved, download or unzip the repository and try it again.
+
+## Build log file
+
+[log_radia_build_py39_macos.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos.sh)

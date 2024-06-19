@@ -13,7 +13,7 @@ sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Develope
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory.
 ```
-make
+make all
 ```
 - Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python`).
 ```
@@ -81,9 +81,16 @@ If **permission denied** error appears, add `sudo` in front of `python setup.py 
 
 [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pyenv](https://www.janmeppe.com/blog/how-to-set-python3-as-default-mac/) virtual environment might also help to configure python version 2, 3, and it derivatives.
 
+### Error: fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: can't create temporary output file: build/temp.macosx-10.9-universal2-3.9/Users/hidekinakajima/Downloads/Radia-master/cpp/src/clients/python/radpy.o.lipo (Permission denied)
+
+Open the terminal `sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python`
+
+
 ### Error: `ld: library not found for -lfftw`
 
 This error originates from the same issue as above, so create a `python` symbolic link. If it is not solved, download or unzip the repository and try it again.
+
+No idea on how to build fftw yet, but `libfftw.a` is added in this repository that makes it possible without `make all` including `make fftw`.
 
 ## Build log file
 

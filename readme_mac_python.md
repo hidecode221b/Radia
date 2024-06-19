@@ -2,7 +2,9 @@
 
 This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), and [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
-1. Download code in zip and unzip it.
+1. You should install the command line developer tools in the terminal `xcode-select --install` [link](https://mac.install.guide/commandlinetools/).
+1. If you have recent mac, python version 3 is only available, so open the terminal `sudo ln -s /usr/bin/python3 /usr/local/bin/python` with password [link](https://stackoverflow.com/questions/71591971/how-can-i-fix-the-zsh-command-not-found-python-error-macos-monterey-12-3).
+1. Download the Radia code in zip from this repository and unzip it.
 1. Open terminal and `make all` in the radia-master directory. If you have previous build, delete them first with password.
 1. Move the directory **/cpp/py/** and `python3 setup.py install` in terminal.
 1. Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XXm-darwin.so* (names depend on environment).
@@ -14,6 +16,12 @@ This is a note to build radia on python/macOS. When python is updated, you can m
 1. Test `python3 radia_example01.py` in terminal again.
 1. Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
 1. Test `python3 radia_example01.py` in terminal again.
+
+## Troubleshooting
+
+### Error: `make[1]: *** [triangle.o] Error 1`
+
+Download the Radia from this repository and try `make all` again.
 
 Because of fatal errors in triangle.h, 4 files are added in this repository from the web site below.
 
@@ -32,4 +40,13 @@ Because of fatal errors in triangle.h, 4 files are added in this repository from
 
 You can also download [original radia](https://github.com/ochubar/Radia) and just add them above. In the other way, we can modify the trinagle.c to delete lines related to fpu_control.h. BTW I have no idea how it works.
 
+### Error: `xcode-select: Failed to locate 'python', requesting installation of command line developer tools.`
+
+Install the command line developer tools in the terminal `xcode-select --install` [link](https://mac.install.guide/commandlinetools/).
+
+### Error: `/bin/sh: python: command not found`
+
+Open the terminal `sudo ln -s /usr/bin/python3 /usr/local/bin/python` with password [link](https://stackoverflow.com/questions/71591971/how-can-i-fix-the-zsh-command-not-found-python-error-macos-monterey-12-3).
+
+conda might also help to switch python version 2, 3, and it derivatives.
 

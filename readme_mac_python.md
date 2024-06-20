@@ -2,7 +2,7 @@
 
 This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), [3.10](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-310-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
-Note that you can try `python3 radia_example01.py` in **/env/radia_python** prior to this build. If it works, you do not have to make this proceudre.
+Note that you can try `python3 radia_example01.py` in **/env/radia_python** prior to this build. If it works, you do not have to make this proceudre. This repository is modified to build radia python on macOS.
 
 - You should install the command line developer tools in the terminal (see details below).
 ```

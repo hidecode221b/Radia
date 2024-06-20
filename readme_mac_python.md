@@ -6,18 +6,14 @@ This is a note to build radia on python/macOS. When python is updated, you can m
 ```
 xcode-select --install
 ```
-- If you have recent macos, python version 3 is only available, so open the terminal to make a symbolic link (see details below).
-```
-sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python
-```
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory (see details below).
 ```
 make
 ```
-- Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python`).
+- Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python3`).
 ```
-python setup.py install
+python3 setup.py install
 ```
 - Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on environment).
 - Paste it in the directory **/env/radia_python/**.
@@ -28,12 +24,12 @@ cd /env/radia_python
 ```
 - Test a Radia python code from example to verify the app as below.
 ```
-python radia_example01.py
+python3 radia_example01.py
 ```
 
-- Message in the first radia run `radia cannot be opened because the developer cannot be verified.`, then click `Cancel`.
+- Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
 - Message in the second radia run `macOS cannot verify the developer of radia. Are you sure you want to open it?`, then `Open`.
-- Test `python radia_example01.py` in terminal for the third radia run trial.
+- Test `python3 radia_example01.py` in terminal for the third radia run trial.
 - Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
 - Test `python radia_example01.py` in terminal for the fourth radia run trial, then it works eventually.
 
@@ -66,6 +62,8 @@ sudo xcodebuild -license
 
 ### Error: `/bin/sh: python: command not found`
 
+In this repository, python3 is used to build radia.so. If you want to run `python` instead of `python3`, follow the procedures below.
+
 #### Create a symbolic link for `python`
 
 This is an important issue on macos, because the default python was version 2 on macos. Now, python does not exist on maxos, and python3 is a default python. However, the Radia python is built on `python` not `python3`. I have tried to change the source with python3, but it has not been successful yet at this moment. Instead, we can create the symbolic link of `python3` for `python`.
@@ -82,19 +80,16 @@ You can check the version of python in terminal, and it should be `Python 3.X.X`
 python -V
 ```
 
-If **permission denied** error appears, add `sudo` in front of `python setup.py install` with password.
+If **permission denied** error appears, add `sudo` in front of `python setup.py install` or delete folders previously created with password.
 
 
 #### Virtual environment
 
 [conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pyenv](https://www.janmeppe.com/blog/how-to-set-python3-as-default-mac/) virtual environment might also help to configure python version 2, 3, and it derivatives.
 
-### Error: fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: can't create temporary output file: build/temp.macosx-10.9-universal2-3.9/Users/hidekinakajima/Downloads/Radia-master/cpp/src/clients/python/radpy.o.lipo (Permission denied)
+### Error: `error: could not create 'build/temp.macosx-10.9-x86_64-3.7': Permission denied`
 
-Open the terminal and run it below. I have no idea why it happens for mulitple times.
-```
-sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python`
-```
+Delete `build`, `dist`, `Radia_Python_Interface.egg-info ` folders in **cpp/py/**.
 
 ### Error: `ld: library not found for -lfftw`
 
@@ -117,6 +112,11 @@ Traceback (most recent call last):
   File "/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia_example01.py", line 8, in <module>
     import radia as rad
 ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
+```
+### Error: `ModuleNotFoundError: No module named 'numpy'`
+
+```
+pip3 install numpy
 ```
 
 ## Build log files

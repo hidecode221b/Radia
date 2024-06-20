@@ -120,6 +120,10 @@ pip3 install numpy
 pip3 install matplotlib
 ```
 
+### Error: `macOS 12 (1207) or later required, have instead 12 (1206) !`
+
+Python 3.10 and 3.11 have an issue on Tcl/Tk that makes plot on X11 [link](https://www.python.org/download/mac/tcltk/). Python 3.9 is still safe for radia to work.
+
 ## Build log files
 
 [log_radia_build_py39_macos_make.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make.sh)

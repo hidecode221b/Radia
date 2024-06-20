@@ -11,7 +11,7 @@ xcode-select --install
 sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python
 ```
 - Download the Radia code in zip from this repository and unzip it.
-- Open terminal and build radia.so in the radia-master directory.
+- Open terminal and build radia.so in the radia-master directory (see details below).
 ```
 make
 ```
@@ -101,8 +101,15 @@ This error originates from the same issue as above, so create a `python` symboli
 
 No idea on how to build fftw yet, but `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
 
+One mac can `make all`, but the other mac can `make` and `make all` results in a build error, which might be related to the fortran compiler configuration. Even though original radia can `make all` in some conditions, but radia does not work on python.
+
 ## Build log files
 
 [log_radia_build_py39_macos_make.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make.sh)
 
+[log_radia_build_py39_macos_make_fftw.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make_fftw.sh)
+
 [log_radia_build_py27_macos_make_all.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py27_macos_make_all.sh)
+
+[log_radia_build_py27_macos_make_fftw.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py27_macos_make_fftw.sh)
+

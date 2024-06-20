@@ -56,7 +56,7 @@ You can also download [original radia](https://github.com/ochubar/Radia) and mod
 
 ### Error: `xcode-select: Failed to locate 'python', requesting installation of command line developer tools.`
 
-Install the command line developer tools in the terminal `xcode-select --install` [link1](https://mac.install.guide/commandlinetools/), [likn2](https://www.intel.com/content/www/us/en/developer/articles/troubleshooting/error-ld-library-not-found-with-macos-big-sur.html).
+Install the command line developer tools in the terminal [link1](https://mac.install.guide/commandlinetools/), [likn2](https://www.intel.com/content/www/us/en/developer/articles/troubleshooting/error-ld-library-not-found-with-macos-big-sur.html).
 
 ```
 xcode-select --install

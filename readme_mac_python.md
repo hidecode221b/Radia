@@ -22,14 +22,15 @@ python setup.py install
 - Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on environment).
 - Paste it in the directory **/env/radia_python/**.
 - Duplicate `radia.cpython-XX-darwin.so` and rename it to **radia.so** which works for Radia in python (you can delete or rename the original radia.so).
-- Change the working direcotry for testing.
+- Change a direcotry that has radia.so and examples python codes for testing.
 ```
 cd /env/radia_python
 ```
-- Test a Radia python code from example for 4 times at least to verify the app as below.
+- Test a Radia python code from example to verify the app as below.
 ```
 python radia_example01.py
 ```
+
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified.`, then click `Cancel`.
 - Message in the second radia run `macOS cannot verify the developer of radia. Are you sure you want to open it?`, then `Open`.
 - Test `python radia_example01.py` in terminal for the third radia run trial.

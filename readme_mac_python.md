@@ -99,9 +99,24 @@ sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Develope
 
 This error originates from the same issue as above, so create a `python` symbolic link. If it is not solved, download or unzip the repository and try it again.
 
-No idea on how to build fftw yet, but `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
+No idea on how to `make fftw` yet, but pre-compiled `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
 
-One mac can `make all`, but the other mac can `make` and `make all` results in a build error, which might be related to the fortran compiler configuration. Even though original radia can `make all` in some conditions, but radia does not work on python.
+```
+# - `make all` - will compile FFTW, C++ core and Python lib;
+# - `make fftw` - will compile FFTW only;
+# - `make` - will compile C++ core and Python lib;
+# - `make clean` - will clean temporary files.
+```
+
+One mac can `make fftw`, but the other mac can `make` and `make all` results in a build error, which might be related to the fortran compiler configuration. Even though original radia can `make all` in some conditions, but radia does not work on python.
+
+```
+Hidekis-Air-13:radia_python hidekinakajima$ python radia_example01.py
+Traceback (most recent call last):
+  File "/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia_example01.py", line 8, in <module>
+    import radia as rad
+ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
+```
 
 ## Build log files
 

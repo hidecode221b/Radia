@@ -13,7 +13,7 @@ sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Develope
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory.
 ```
-make all
+make
 ```
 - Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python`).
 ```
@@ -69,13 +69,20 @@ sudo xcodebuild -license
 
 This is an important issue on macos, because the default python was version 2 on macos. Now, python does not exist on maxos, and python3 is a default python. However, the Radia python is built on `python` not `python3`. I have tried to change the source with python3, but it has not been successful yet at this moment. Instead, we can create the symbolic link of `python3` for `python`.
 
-Open the terminal `sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python` [link](https://developer.apple.com/forums/thread/704099).
+Open the terminal and run below [link](https://developer.apple.com/forums/thread/704099).
+
+```
+sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python
+```
 
 You can check the version of python in terminal, and it should be `Python 3.X.X`.
 
-> python -V
+```
+python -V
+```
 
 If **permission denied** error appears, add `sudo` in front of `python setup.py install` with password.
+
 
 #### Virtual environment
 
@@ -83,15 +90,19 @@ If **permission denied** error appears, add `sudo` in front of `python setup.py 
 
 ### Error: fatal error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/lipo: can't create temporary output file: build/temp.macosx-10.9-universal2-3.9/Users/hidekinakajima/Downloads/Radia-master/cpp/src/clients/python/radpy.o.lipo (Permission denied)
 
-Open the terminal `sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python`
-
+Open the terminal and run it below. I have no idea why it happens for mulitple times.
+```
+sudo ln -s /Library/Developer/CommandLineTools/usr/bin/python3 /Library/Developer/CommandLineTools/usr/bin/python`
+```
 
 ### Error: `ld: library not found for -lfftw`
 
 This error originates from the same issue as above, so create a `python` symbolic link. If it is not solved, download or unzip the repository and try it again.
 
-No idea on how to build fftw yet, but `libfftw.a` is added in this repository that makes it possible without `make all` including `make fftw`.
+No idea on how to build fftw yet, but `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
 
-## Build log file
+## Build log files
 
-[log_radia_build_py39_macos.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos.sh)
+[log_radia_build_py39_macos_make.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make.sh)
+
+[log_radia_build_py27_macos_make_all.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py27_macos_make_all.sh)

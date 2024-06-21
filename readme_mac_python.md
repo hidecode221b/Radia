@@ -1,4 +1,4 @@
-# How to make/build the radia on python 3.7.9/macOS 12.7.5
+# How to make/build the radia on python/macOS
 
 This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), [3.10](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-310-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
@@ -11,18 +11,23 @@ xcode-select --install
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory (see details below).
 ```
-make
+cd ~/Downloads/radia-master/
+make all
 ```
 - Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python3`).
 ```
+cd cpp/py
 python3 setup.py install
 ```
-- Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on environment).
-- Paste it in the directory **/env/radia_python/**.
-- Duplicate `radia.cpython-XX-darwin.so` and rename it to **radia.so** which works for Radia in python (you can delete or rename the original radia.so).
-- Change a direcotry that has radia.so and examples python codes for testing.
+- Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on environment), and paste it in the directory **/env/radia_python/**.
 ```
-cd /env/radia_python
+cd build/lib.macosx-12.7-x86_64-3.9/
+cp radia.cpython-39-darwin.so ~/Downloads/radia-master/env/radia_python/radia.cpython-39-darwin.so
+```
+- Duplicate `radia.cpython-XX-darwin.so` and rename it to **radia.so** which works for Radia in python (you can overwrite or rename the original radia.so).
+```
+cd ~/Downloads/radia-master/env/radia_python/
+cp radia.cpython-39-darwin.so radia.so
 ```
 - Test a Radia python code from example to verify the app as below.
 ```
@@ -31,17 +36,22 @@ python3 radia_example01.py
 
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
 - Message in the second radia run `macOS cannot verify the developer of radia. Are you sure you want to open it?`, then `Open`.
-- Test `python3 radia_example01.py` in terminal for the third radia run trial.
 - Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
-- Test `python radia_example01.py` in terminal for the fourth radia run trial, then it works eventually.
+- Test `python radia_example01.py` in terminal, then it works eventually without verification.
+
+```
+python3 radia_example02.py
+python3 radia_example03.py
+python3 radia_example04.py
+python3 radia_example05.py
+python3 radia_example06.py
+```
 
 ## Troubleshooting
 
 ### Error: `fatal error: 'fpu_control.h' file not found`
 
-#### Download the Radia from this repository and try `make` again.
-
-In this repository, `triangle.c` file is modified as below.
+Download the Radia from this repository and try `make all` again. In this repository, `triangle.c` file is modified as below.
 
 Comment out in `fpu-control.h` in `triangle.c` because it is not needed in macos [link1](https://github.com/YosysHQ/yosys/issues/334), [link2](https://stackoverflow.com/questions/4271881/newbie-problem-with-gcc-4-2-compiler-mac-osx-fpu-control-h-no-such-file-or-d).
 
@@ -64,11 +74,18 @@ sudo xcodebuild -license
 
 ### Error: `/bin/sh: python: command not found`
 
-In this repository, python3 is used to build radia.so. If you want to run `python` instead of `python3`, follow the procedures below.
+In this repository, `python3` is used to build radia.so. If you want to run `python` instead of `python3`, follow the procedures below.
 
-#### Create a symbolic link for `python`
+#### Use `python3` to setup.py install
 
-This is an important issue on macos, because the default python was version 2 on macos. Now, python does not exist on maxos, and python3 is a default python. However, the Radia python is built on `python` not `python3`. I have tried to change the source with python3, but it has not been successful yet at this moment. Instead, we can create the symbolic link of `python3` for `python`.
+In this repository, `Makefile` in **cpp/py** is modified for `python3`, so you can use `python3`.
+```
+python3 setup.py install
+```
+
+#### Create a symbolic link for `python` (but not recommended)
+
+This is an important issue on macos, because the default python was version 2 on macos. Now, `python` does not exist on maxOS, and `python3` is a default python. However, the original Radia python is built on `python` not `python3`. We can create the symbolic link of `python3` for `python`.
 
 Open the terminal and run below [link](https://developer.apple.com/forums/thread/704099).
 
@@ -87,7 +104,14 @@ If **permission denied** error appears, add `sudo` in front of `python setup.py 
 
 #### Virtual environment
 
-[conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pyenv](https://www.janmeppe.com/blog/how-to-set-python3-as-default-mac/) virtual environment might also help to configure python version 2, 3, and it derivatives.
+[conda](https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html) or [pyenv](https://www.janmeppe.com/blog/how-to-set-python3-as-default-mac/) virtual environment might also help to configure python version 2, 3, and it derivatives. For example, `pyenv` works in both `python` and `python3` seamlessly without change in system default python environment.
+
+```
+brew install pyenv
+pyenv install 3.9
+pyenv global 3.9
+python -V
+```
 
 ### Error: `error: could not create 'build/temp.macosx-10.9-x86_64-3.7': Permission denied`
 
@@ -95,9 +119,7 @@ Delete `build`, `dist`, `Radia_Python_Interface.egg-info ` folders in **cpp/py/*
 
 ### Error: `ld: library not found for -lfftw`
 
-This error originates from the same issue as above, so create a `python` symbolic link. If it is not solved, download or unzip the repository and try it again.
-
-No idea on how to `make fftw` yet, but pre-compiled `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
+This error is based on build error in `make fftw`. Check `make fftw` if `make all` does not work. 
 
 ```
 # - `make all` - will compile FFTW, C++ core and Python lib;
@@ -106,7 +128,14 @@ No idea on how to `make fftw` yet, but pre-compiled `libfftw.a` is added in this
 # - `make clean` - will clean temporary files.
 ```
 
-One mac can `make fftw`, but the other mac can `make` and `make all` results in a build error, which might be related to the fortran compiler configuration. Even though original radia can `make all` in some conditions, but radia does not work on python.
+Previously I had a problem on g77 symboic link in **/user/local/bin/**, and solved with `rm g77`.
+
+```
+g77
+-bash: /usr/local/bin/g77: Bad CPU type in executable
+```
+
+Pre-compiled `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
 
 ```
 Hidekis-Air-13:radia_python hidekinakajima$ python radia_example01.py
@@ -115,6 +144,10 @@ Traceback (most recent call last):
     import radia as rad
 ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
 ```
+
+I have no test on Apple silicon, but some suggestion is found in [link](https://stackoverflow.com/questions/73030706/how-to-install-fftw-2-1-5-on-an-m1-macbook-pro).
+
+
 ### Error: `ModuleNotFoundError: No module named 'numpy' or 'matplotlib'`
 
 ```
@@ -124,11 +157,11 @@ pip3 install matplotlib
 
 ### Error: `macOS 12 (1207) or later required, have instead 12 (1206) !`
 
-Python 3.10 and 3.11 have an issue on Tcl/Tk that makes plot on X11 [link](https://www.python.org/download/mac/tcltk/). Python 3.9 is still safe for radia to work.
+Python 3.10 and 3.11 have an issue on Tcl/Tk that makes plot on X11 [link](https://www.python.org/download/mac/tcltk/). Python 3.9 is still safe to open plots in X11.
 
 ## Build log files
 
-[log_radia_build_py39_macos_make.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make.sh)
+[log_radia_build_py39_macos_make_all.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make_all.sh)
 
 [log_radia_build_py39_macos_make_fftw.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make_fftw.sh)
 

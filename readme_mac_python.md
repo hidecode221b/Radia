@@ -19,9 +19,11 @@ make all
 cd cpp/py
 python3 setup.py install
 ```
-- Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on environment), and paste it in the directory **/env/radia_python/**.
+- Make a copy of **/cpp/py/build/** *lib.macosx-10.9-x86_64-X.X/radia.cpython-XX-darwin.so* (names depend on your environment), and paste it in the directory **/env/radia_python/**.
 ```
-cd build/lib.macosx-12.7-x86_64-3.9/
+cd build
+ls
+cd build/lib.macosx-12.9-x86_64-3.9/
 cp radia.cpython-39-darwin.so ~/Downloads/radia-master/env/radia_python/radia.cpython-39-darwin.so
 ```
 - Duplicate `radia.cpython-XX-darwin.so` and rename it to **radia.so** which works for Radia in python (you can overwrite or rename the original radia.so).
@@ -29,15 +31,14 @@ cp radia.cpython-39-darwin.so ~/Downloads/radia-master/env/radia_python/radia.cp
 cd ~/Downloads/radia-master/env/radia_python/
 cp radia.cpython-39-darwin.so radia.so
 ```
-- Test a Radia python code from example to verify the app as below.
+- Test a Radia python code from an example to verify the first app run as below.
 ```
 python3 radia_example01.py
 ```
 
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
-- Message in the second radia run `macOS cannot verify the developer of radia. Are you sure you want to open it?`, then `Open`.
-- Open system preferences - security & privacy - general - open anyway to allow opening radia.so.
-- Test `python radia_example01.py` in terminal, then it works eventually without verification.
+- Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-39-darwin.so` blocked from use because it is not from an identified developer.
+- Message in the second radia run `macOS cannot verify the developer of "radia.cpython-39-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
 
 ```
 python3 radia_example02.py
@@ -101,6 +102,8 @@ python -V
 
 If **permission denied** error appears, add `sudo` in front of `python setup.py install` or delete folders previously created with password.
 
+In this method, I found an issue on the module installation in python environment such as numpy, matplotlib, etc. Even though the module can be installed in pip, radia code does not recognize these modules.
+
 
 #### Virtual environment
 
@@ -128,11 +131,12 @@ This error is based on build error in `make fftw`. Check `make fftw` if `make al
 # - `make clean` - will clean temporary files.
 ```
 
-Previously I had a problem on g77 symboic link in **/user/local/bin/**, and solved with `rm g77`.
+Previously I had a problem on a g77 symbolic link in **/user/local/bin/**, and solved with `rm g77`. You may check the difference from the successful terminal log as attached at the end of this report.
 
 ```
 g77
 -bash: /usr/local/bin/g77: Bad CPU type in executable
+rm g77
 ```
 
 Pre-compiled `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.

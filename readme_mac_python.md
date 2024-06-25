@@ -183,7 +183,7 @@ pip3 install setuptools
 
 ### Error: `RuntimeError: This function is not implemented on that platform.`
 
-Radia in macos does not support `rad.ObjDrwOpenGL` for 3D viewer of the geometry. Instead, you can use `rad.ObjDrwVTK`, so open `radia_example02.py` and change `rad.ObjDrwOpenGL(g)` to 
+Radia in macos does not support `rad.ObjDrwOpenGL` for 3D viewer of the geometry. Instead, you can use `rad.ObjDrwVTK`, so open `radia_example0X.py` and change `rad.ObjDrwOpenGL(g)` to 
 
 ```
 rad.ObjDrwVTK(g)

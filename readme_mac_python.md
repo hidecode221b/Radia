@@ -35,6 +35,7 @@ cp radia.cpython-39-darwin.so radia.so
 -->
 - Test a Radia python code from an example to verify the first app run as below.
 ```
+cd ~/Downloads/radia-master/env/radia_python/
 python3 radia_example01.py
 ```
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.

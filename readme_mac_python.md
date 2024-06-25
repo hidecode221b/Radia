@@ -194,7 +194,7 @@ pip3 install setuptools
 
 ### Error: `RuntimeError: This function is not implemented on that platform.`
 
-Radia in macos does not support `rad.ObjDrwOpenGL` for 3D viewer of the geometry. Instead, we can save and plot vtk file by using [pyvista](https://pyvista.org/) or [paraview](https://www.paraview.org/). `radia_vtk.py` in this repository based on [quorx](https://github.com/ochubar/Radia/issues/17) is added.
+Radia in macos does not support `rad.ObjDrwOpenGL` for 3D viewer of the geometry. Instead, we can save and plot vtk file by using [pyvista](https://pyvista.org/) or [paraview](https://www.paraview.org/). `radia_vtk.py` in this repository coded by [quorx](https://github.com/ochubar/Radia/issues/17) is added.
 
 ```
 import radia_vtk as rad_vtk

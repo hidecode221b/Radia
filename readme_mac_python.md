@@ -130,7 +130,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 ```
-
+Now you can check available python environment other than system python, and switch any python version.
 ```
 pyenv versions
 pyenv global 3.9

@@ -8,6 +8,12 @@ Note that you can try `python3 radia_example01.py` in **/env/radia_python** prio
 ```
 xcode-select --install
 ```
+- You may need python modules at least.
+```
+pip3 install numpy
+pip3 install matplotlib
+pip3 install setuptools
+```
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory (see details below).
 ```
@@ -41,11 +47,8 @@ python3 radia_example01.py
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
 - Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-39-darwin.so` blocked from use because it is not from an identified developer.
 - Message in the second radia run `macOS cannot verify the developer of "radia.cpython-39-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
-- To display the plot of fields and geometry of objects in macOS, you need additonal modules.
+- To display the geometry of objects in macOS, you need additonal modules.
 ```
-pip3 install numpy
-pip3 install matplotlib
-pip3 install setuptools
 pip3 install pyvista
 pip3 install accumulate
 ```

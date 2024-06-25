@@ -1,6 +1,6 @@
 # How to make/build the radia on python/macOS
 
-This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), [3.10](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-310-darwin.so) but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
+This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), [3.10](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-310-darwin.so), [3.12](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-312-darwin.so)  but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
 Note that you can try `python3 radia_example01.py` in **/env/radia_python** prior to this build. If it works, you do not have to make this proceudre. This repository is modified to build radia python on macOS.
 
@@ -14,6 +14,7 @@ xcode-select --install
 cd ~/Downloads/radia-master/
 make all
 ```
+<!-- 
 - Change the directory to **/cpp/py/** and run setup.py (if permission denied, add `sudo` in front of `python3`).
 ```
 cd cpp/py
@@ -31,11 +32,11 @@ cp radia.cpython-39-darwin.so ~/Downloads/radia-master/env/radia_python/radia.cp
 cd ~/Downloads/radia-master/env/radia_python/
 cp radia.cpython-39-darwin.so radia.so
 ```
+-->
 - Test a Radia python code from an example to verify the first app run as below.
 ```
 python3 radia_example01.py
 ```
-
 - Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
 - Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-39-darwin.so` blocked from use because it is not from an identified developer.
 - Message in the second radia run `macOS cannot verify the developer of "radia.cpython-39-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
@@ -100,7 +101,7 @@ You can check the version of python in terminal, and it should be `Python 3.X.X`
 python -V
 ```
 
-If **permission denied** error appears, add `sudo` in front of `python setup.py install` or delete folders previously created with password.
+If **permission denied** error appears, add `sudo` in front of `python setup.py install` or delete all folders previously created under **cpp/py/** with password.
 
 In this method, I found an issue on the module installation in python environment such as numpy, matplotlib, etc. Even though the module can be installed in pip, radia code does not recognize these modules.
 
@@ -112,6 +113,21 @@ In this method, I found an issue on the module installation in python environmen
 ```
 brew install pyenv
 pyenv install 3.9
+```
+
+Open your shell to run pyenv
+```
+nano ~/.zshrc
+```
+Copy and paste below into .zshrc, then `ctrl + o` for overwrite, `ctrl + x` for exit
+```
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+```
+
+```
+pyenv versions
 pyenv global 3.9
 python -V
 ```
@@ -152,12 +168,22 @@ ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_pytho
 I have no test on Apple silicon, but some suggestion is found in [link](https://stackoverflow.com/questions/73030706/how-to-install-fftw-2-1-5-on-an-m1-macbook-pro).
 
 
-### Error: `ModuleNotFoundError: No module named 'numpy' or 'matplotlib'`
+### Error: `ModuleNotFoundError: No module named 'numpy' or 'matplotlib', 'setuptools'`
 
 ```
 pip3 install numpy
 pip3 install matplotlib
+pip3 install setuptools
 ```
+
+### Error: `RuntimeError: This function is not implemented on that platform.`
+
+Radia in macos does not support `rad.ObjDrwOpenGL` for 3D viewer of the geometry. Instead, you can use `rad.ObjDrwVTK`, so open `radia_example02.py` and change `rad.ObjDrwOpenGL(g)` to 
+
+```
+rad.ObjDrwVTK(g)
+```
+`g` is an object file and changed to name of your object.
 
 ### Error: `macOS 12 (1207) or later required, have instead 12 (1206) !`
 

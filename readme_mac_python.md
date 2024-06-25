@@ -191,8 +191,8 @@ rad_vtk.plot_vtk(g)
 ```
 `g` is an object file and changed to name of your object. `radia_geometry.vtk` is a name of vtk file exported. For pyvista, you need additional modules.
 ```
-pip install pyvista
-pip install accumulate
+pip3 install pyvista
+pip3 install accumulate
 ```
 
 ### Error: `macOS 12 (1207) or later required, have instead 12 (1206) !`

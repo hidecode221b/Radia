@@ -8,6 +8,7 @@ from __future__ import absolute_import, division, print_function #Py 2.*/3.* com
 import radia as rad
 from uti_plot import *
 import time
+import radia_vtk as rad_vtk
 
 print('RADIA Python Example #3:')
 print('This example creates and solves a simple U46 Hybrid Undulator made with rectangular magnet blocks.')
@@ -124,7 +125,8 @@ if __name__=="__main__":
     #Build the Structure
     und, pole, magnet = Und(lp, mp, np, cp, lm, mm, nm, cm, gap, gapOffset, numPer)
     #Show the Structure in 3D Viewer
-    rad.ObjDrwOpenGL(und)
+    #rad.ObjDrwOpenGL(und)
+    rad_vtk.plot_vtk(und)
 
     #Solve the Magnetization Problem
     t0 = time.time()

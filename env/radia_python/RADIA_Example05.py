@@ -10,6 +10,7 @@ from uti_plot import *
 from time import *
 from math import *
 from array import *
+import radia_vtk as rad_vtk
 
 print('RADIA Python Example #5:')
 print('This example concerns geometries dominated by iron.')
@@ -145,7 +146,8 @@ if __name__=="__main__":
     size=rad.ObjDegFre(t)
 
     #Display the Geometry
-    rad.ObjDrwOpenGL(t)
+    #rad.ObjDrwOpenGL(t)
+    rad_vtk.plot_vtk(t)
 
     #Solve the Geometry
     t1=time()
@@ -185,7 +187,8 @@ if __name__=="__main__":
 
     #Creating the Model and Solving with Rectangular Segmentation in the Corners
     t = Geom(0)
-    rad.ObjDrwOpenGL(t)
+    #rad.ObjDrwOpenGL(t)
+    rad_vtk.plot_vtk(t)
 
     t1=time()
     res=rad.Solve(t,0.0001,1500)

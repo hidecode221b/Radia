@@ -8,6 +8,7 @@
 from __future__ import print_function #Py 2.*/3.* compatibility
 import radia as rad
 from uti_plot import *
+import radia_vtk as rad_vtk
 
 print('RADIA Python Example #2:')
 print('This example consists in the creation of a set of racetrack and circular coils,')
@@ -81,7 +82,8 @@ if __name__=="__main__":
     print('SCW Geometry Index:', g)
 
     #Display the Geometry in 3D Viewer
-    rad.ObjDrwOpenGL(g)
+    #rad.ObjDrwOpenGL(g)
+    rad_vtk.plot_vtk(g)
 
     #Calculate Magnetic Field
     BzVsY, MeshY, IBzVsX, MeshX = CalcField(g)

@@ -11,6 +11,7 @@ from uti_plot import *
 from time import *
 from math import *
 from array import *
+import radia_vtk as rad_vtk
 
 print('RADIA Python Example #6:')
 print('')
@@ -195,7 +196,8 @@ if __name__=="__main__":
     print('Delta Int. Quad. @ 10 mm = ', round(100*(Iz1/Iz-1),2), '%')
     
     #Display the Geometry
-    rad.ObjDrwOpenGL(g)
+    #rad.ObjDrwOpenGL(g)
+    rad_vtk.plot_vtk(g)
 
     #Magnetic Field Plots
     z = 0; x1 = 0; x2 = 30; ymax = 40; np = 20

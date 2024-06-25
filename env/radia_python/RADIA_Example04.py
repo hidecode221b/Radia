@@ -11,6 +11,7 @@ from __future__ import absolute_import, division, print_function #Py 2.*/3.* com
 import radia as rad
 from math import *
 from uti_plot import *
+import radia_vtk as rad_vtk
 
 print('RADIA Python Example #4:')
 print('This example illustrates the use of a polyhedron shape by means of the "radObjMltExtPgn" function.')
@@ -48,7 +49,8 @@ if __name__=="__main__":
     rad.ObjDrwAtr(aSpherMag, [0,0.5,0.8])
 
     #Display the Geometry in 3D Viewer
-    rad.ObjDrwOpenGL(aSpherMag)
+    #rad.ObjDrwOpenGL(aSpherMag)
+    rad_vtk.plot_vtk(aSpherMag)
 
     #Calculate Magnetic Field
     print('Field in the Center = ', rad.Fld(aSpherMag, 'b', [0,0,0]))

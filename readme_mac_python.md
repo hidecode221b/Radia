@@ -181,7 +181,7 @@ Traceback (most recent call last):
 ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
 ```
 
-I have no test on Apple silicon, but some suggestion is found in [link](https://stackoverflow.com/questions/73030706/how-to-install-fftw-2-1-5-on-an-m1-macbook-pro).
+I have no test on Apple silicon, but some suggestion is found in [link](https://stackoverflow.com/questions/73030706/how-to-install-fftw-2-1-5-on-an-m1-macbook-pro) or find the other solution from [SRW](https://github.com/ochubar/SRW).
 
 
 ### Error: `ModuleNotFoundError: No module named 'numpy' or 'matplotlib', 'setuptools'`

@@ -64,6 +64,10 @@ Comment out in `fpu-control.h` in `triangle.c` because it is not needed in macos
 
 You can also download [original radia](https://github.com/ochubar/Radia) and modify `trinagle.c`.
 
+### Error: `/bin/sh: line 0: [: /Users/.... : binary operator expected`
+
+When you make radia, you may see this error because the folder name includes a space such as "radia test". You can use underscore "radia_test" for example, which is an issue in linux.
+
 ### Error: `xcode-select: Failed to locate 'python', requesting installation of command line developer tools.`
 
 Install the command line developer tools in the terminal [link1](https://mac.install.guide/commandlinetools/), [likn2](https://www.intel.com/content/www/us/en/developer/articles/troubleshooting/error-ld-library-not-found-with-macos-big-sur.html).

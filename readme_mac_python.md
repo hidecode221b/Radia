@@ -44,9 +44,10 @@ cp radia.cpython-39-darwin.so radia.so
 cd ~/Downloads/radia-master/env/radia_python/
 python3 radia_example01.py
 ```
-- Message in the first radia run `radia cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
-- Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-39-darwin.so` blocked from use because it is not from an identified developer.
-- Message in the second radia run `macOS cannot verify the developer of "radia.cpython-39-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
+- The first message appears in the first radia run `"radia.cpython-XX-darwin.so" cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
+- The second message appears after the first `macOS cannot verify the developer of "radia.cpython-XX-darwin.so". Do you want to move to trash?`, then click `Cancel`.
+- Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-XX-darwin.so` blocked from use because it is not from an identified developer.
+- The last message appears in the second radia run `macOS cannot verify the developer of "radia.cpython-XX-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
 - To display the geometry of objects in macOS, you need additonal modules.
 ```
 pip3 install pyvista

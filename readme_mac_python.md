@@ -172,7 +172,7 @@ g77
 rm g77
 ```
 
-Pre-compiled `libfftw.a` is added in this repository that makes `make` possible without `make all` including `make fftw`.
+Pre-compiled `libfftw.a` on Intel mac is added in this repository that makes `make` possible without `make all` including `make fftw`. If you use Apple silicon, you should `make all` (see details in the next paragraph for M1 mac).
 
 ```
 Hidekis-Air-13:radia_python hidekinakajima$ python radia_example01.py
@@ -184,7 +184,7 @@ ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_pytho
 
 ### Error: `configure: error: /bin/sh ./config.sub -apple-darwin23.5.0 failed`
 
-`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, fftw from [SRW](https://github.com/ochubar/SRW) is placed in this repository, and `makefile` is modified accordingly. `config.sub` and `config.guess` files are also updated for macOS `arm64` cpu architecture from the link below.
+`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, fftw package from [SRW](https://github.com/ochubar/SRW) is placed in this repository, and `makefile` is also modified accordingly. In the **ext_lib/fftw** folder, `config.sub` and `config.guess` files are updated for macOS `arm64` cpu architecture from the link below.
 
 ```
 https://git.savannah.gnu.org/gitweb/?p=config.git&a=blob_plain&f=config.sub

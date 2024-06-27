@@ -13,9 +13,9 @@ env_dir = $(root_dir)/env
 ext_dir = $(root_dir)/ext_lib
 gcc_dir = $(root_dir)/cpp/gcc
 py_dir = $(root_dir)/cpp/py
-fftw2_version = fftw-2.1.5
-fftw2_dir = $(fftw2_version)
-fftw2_file = fftw/$(fftw2_version).tar.gz
+fftw_version = fftw-2.1.5
+fftw_dir = $(ext_dir)/$(fftw_version)
+fftw_file = $(ext_dir)/fftw
 log_fftw = /dev/null
 examples_dir = $(env_dir)/radia_python
 export MODE ?= 0
@@ -29,20 +29,17 @@ fftw:
 	if [ ! -d "$(ext_dir)" ]; then \
 	    mkdir $(ext_dir); \
 	fi; \
-	cd $(ext_dir); \
-	if [ ! -f "$(fftw2_file)" ]; then \
-	    wget https://raw.githubusercontent.com/ochubar/SRW/master/ext_lib/$(fftw2_file); \
+	if [ ! -d "$(fftw_dir)" ]; then \
+		mkdir $(fftw_dir); \
 	fi; \
-	if [ -d "$(fftw2_dir)" ]; then \
-	    rm -rf $(fftw2_dir); \
-	fi; \
-	tar -zxf $(fftw2_file); \
-	cd $(fftw2_dir); \
-	./configure --enable-float --with-pic; \
-	sed 's/^CFLAGS = /CFLAGS = -fPIC /' -i Makefile; \
-	make -j8 && cp fftw/.libs/libfftw.a $(ext_dir); \
+	cd $(fftw_file); \
+	cp $(fftw_file)/CMakeLists.txt $(fftw_dir); \
+	cd $(fftw_dir); \
+	cmake .; \
+	make -j8
+	cp $(fftw_dir)/stage/lib/libfftw.a $(ext_dir); \
 	cd $(root_dir); \
-	rm -rf $(ext_dir)/$(fftw2_dir);
+	rm -rf $(fftw_dir);
 
 core: 
 	#cd $(gcc_dir); make -j8 clean lib
@@ -53,7 +50,7 @@ pylib:
 
 clean:
 	rm -f $(ext_dir)/libfftw.a $(gcc_dir)/libradia.a $(gcc_dir)/radia*.so; \
-	rm -rf $(ext_dir)/$(fftw2_dir)/py/build/;
+	rm -rf $(fftw_dir)/py/build/;
 	if [ -d $(root_dir)/.git ]; then rm -f $(examples_dir)/radia*.so && (git checkout $(examples_dir)/radia*.so 2>/dev/null || :); fi;
 
 .PHONY: all clean core fftw nofftw pylib

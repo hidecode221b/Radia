@@ -14,6 +14,11 @@ pip3 install numpy
 pip3 install matplotlib
 pip3 install setuptools
 ```
+- You may also need [brew](https://brew.sh/) to install wget and cmake .
+```
+brew install wget
+brew install cmake
+```
 - Download the Radia code in zip from this repository and unzip it.
 - Open terminal and build radia.so in the radia-master directory (see details below).
 ```
@@ -182,11 +187,12 @@ Traceback (most recent call last):
 ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
 ```
 
-### Error: `configure: error: /bin/sh ./config.sub -apple-darwin23.5.0 failed`
+### Error: `configure: error: /bin/sh ./config.sub -apple-darwinXX.X.0 failed`
 
-`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, fftw package from [SRW](https://github.com/ochubar/SRW) is placed in this repository, and `makefile` is also modified accordingly. In the **ext_lib/fftw** folder, `config.sub` and `config.guess` files are updated for macOS `arm64` cpu architecture from the link below.
+`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, we have to  `cmake` based on CMakeLists.txt as described in [SRW](https://github.com/ochubar/SRW) for `arm64`. In this repository, `makefile` and `CMakeLists.txt` are modified in **root**, **cpp/gcc/**, and **ext_lib/fftw/** accordingly. The following files are downloaded via `wget` during the `cmake`, so your PC should be online.
 
 ```
+http://www.fftw.org/fftw-2.1.5.tar.gz
 https://git.savannah.gnu.org/gitweb/?p=config.git&a=blob_plain&f=config.sub
 https://git.savannah.gnu.org/gitweb/?p=config.git&a=blob_plain&f=config.guess
 ```

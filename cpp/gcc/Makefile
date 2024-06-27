@@ -33,9 +33,27 @@ ML_INCLUDE=	-I$(ML_ORIG_DIR) -I$(RAD_SRC_ML_DIR)
 #MLMPREP=	$(ML_ORIG_DIR)/mprep
 
 #CC  = gcc
-CC  = cc
+#CC  = cc
 #CC  = mpicxx
-CXX = c++
+#CXX = c++
+
+ifeq ($(OS),Windows_NT)
+	CC ?= cc
+	CXX ?= c++
+	OSFLAG += -DWIN32
+else
+	UNAME_S := $(shell uname -s)
+	ifeq ($(UNAME_S),Linux)
+		CC ?= cc
+		CXX ?= c++
+		OSFLAG += -DLINUX
+	endif
+	ifeq ($(UNAME_S),Darwin)
+		OSFLAG += -D__MAC__
+		CC  ?= gcc
+		CXX ?= g++ -stdlib=libc++ -mmacosx-version-min=10.9
+	endif
+endif
 
 #RAD_SRC_DEF=	-D__GCC__ -D__MATHEMATICA__ -DFFTW_ENABLE_FLOAT -DNO_TIMER -DANSI_DECLARATORS -DTRILIBRARY -DLINUX -D_GM_WITHOUT_BASE -DMLINTERFACE=4
 #RAD_SRC_DEF=	-D__GCC__ -DFFTW_ENABLE_FLOAT -DNO_TIMER -DANSI_DECLARATORS -DTRILIBRARY -DLINUX -D_GM_WITHOUT_BASE -D_WITH_MPI

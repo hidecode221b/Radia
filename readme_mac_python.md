@@ -183,8 +183,12 @@ ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_pytho
 
 ### Error: `configure: error: /bin/sh ./config.sub -apple-darwin23.5.0 failed`
 
-`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, fftw from [SRW](https://github.com/ochubar/SRW) is placed in this repository, and `makefile` is modified accordingly.
+`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, fftw from [SRW](https://github.com/ochubar/SRW) is placed in this repository, and `makefile` is modified accordingly. `config.sub` and `config.guess` files are also updated for macOS `arm64` cpu architecture from the link below.
 
+```
+https://git.savannah.gnu.org/gitweb/?p=config.git&a=blob_plain&f=config.sub
+https://git.savannah.gnu.org/gitweb/?p=config.git&a=blob_plain&f=config.guess
+```
 <!--
 I have no test on Apple silicon, but some suggestion is found in [link](https://stackoverflow.com/questions/73030706/how-to-install-fftw-2-1-5-on-an-m1-macbook-pro) or find the other solution from [SRW](https://github.com/ochubar/SRW).
 -->

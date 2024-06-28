@@ -1,6 +1,6 @@
 # How to make/build the radia on python/macOS
 
-This is a note to build radia on python/macOS. When python is updated, you can make a new so in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), and [3.12](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-312-darwin.so)  but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
+This is a note to build radia on python/macOS. When python is updated, you can make a new shared object (so) in the following procedure. I tested radia.so with python version [2.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-27m-darwin.so), [3.7](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-37m-darwin.so), [3.8](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-38-darwin.so), [3.9](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-39-darwin.so), and [3.12](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/radia.cpython-312-darwin.so)  but you can build it on your environment in the same way. You can also see [YouTube Video](https://youtu.be/mbbfCD5LF5c). 
 
 Note that you can try `python3 radia_example01.py` in **/env/radia_python** prior to this build. If it works, you do not have to make this proceudre. This repository is modified to build radia python on macOS. The Jupyter notebooks are also available [link](https://github.com/radiasoft/Radia-Examples), and cloud based Radia python is [here](https://www.sirepo.com/en/apps/magnets/).
 
@@ -189,7 +189,7 @@ ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_pytho
 
 ### Error: `configure: error: /bin/sh ./config.sub -apple-darwinXX.X.0 failed`
 
-`make fftw` as well as `make all` might be an issue on Apple silicon such as M1, M2, M3, and so on. To solve this issue, we have to  `cmake` based on CMakeLists.txt as described in [SRW](https://github.com/ochubar/SRW) for `arm64`. In this repository, `makefile` and `CMakeLists.txt` are modified in **root**, **cpp/gcc/**, and **ext_lib/fftw/** accordingly. The following files are downloaded via `wget` during the `cmake`, so your PC should be online.
+`make fftw` as well as `make all` might be an issue on mac with [Apple silicon](https://support.apple.com/en-us/116943) M series. To solve this issue, we have to  `cmake` based on CMakeLists.txt as described in [SRW](https://github.com/ochubar/SRW) for `arm64` cpu archtecture. In this repository, `makefile` and `CMakeLists.txt` are modified in **root**, **cpp/gcc/**, and **ext_lib/fftw/** accordingly. The following files are downloaded via `wget` during the `cmake`, so your PC should be online.
 
 ```
 http://www.fftw.org/fftw-2.1.5.tar.gz
@@ -202,10 +202,21 @@ I have no test on Apple silicon, but some suggestion is found in [link](https://
 
 ### Error: `ModuleNotFoundError: No module named 'numpy' or 'matplotlib', 'setuptools'`
 
+Install [pip](https://pip.pypa.io/en/stable/installation/), and run the following commands.
+
 ```
 pip3 install numpy
 pip3 install matplotlib
 pip3 install setuptools
+```
+
+### Error: `/bash/sh:'wget' or 'cmake': command not found`
+
+Install [Homebrew](https://brew.sh/), and run the following commands.
+
+```
+brew install wget
+brew install cmake
 ```
 
 ### Error: `RuntimeError: This function is not implemented on that platform.`

@@ -50,9 +50,9 @@ cd ~/Downloads/radia-master/env/radia_python/
 python3 radia_example01.py
 ```
 - The first message appears in the first radia run `"radia.cpython-XX-darwin.so" cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
-- The second message appears after the first `macOS cannot verify the developer of "radia.cpython-XX-darwin.so". Do you want to move to trash?`, then click `Cancel`.
-- Open system settings - security & privacy - security - `allow anyway` to allow opening `radia.cpython-XX-darwin.so` blocked from use because it is not from an identified developer.
-- The last message appears in the second radia run `macOS cannot verify the developer of "radia.cpython-XX-darwin.so". Are you sure you want to open it?`, then click `Open`, and radia shows the results eventually without further verification.
+- The second message may appear after the first `"radia.cpython-XX-darwin.so" cannot be opened because the developer cannot be verified. Do you want to move to trash?`, then click `Cancel`.
+- Open system settings (in Apple menu) - security & privacy - security - `allow anyway` to allow opening `radia.cpython-XX-darwin.so` blocked from use because it is not from an identified developer.
+- The last message appears in the second radia run `macOS cannot verify the developer of "radia.cpython-XX-darwin.so". Are you sure you want to open it?`, then click `Open`, and eventually radia runs without further verification.
 - To display the geometry of objects in macOS, you need additonal modules.
 ```
 pip3 install pyvista
@@ -68,6 +68,9 @@ python3 radia_example06.py
 ```
 
 ## Troubleshooting
+
+### Error: `fatal error: 'fpu_control.h' file not found`
+
 
 ### Error: `fatal error: 'fpu_control.h' file not found`
 
@@ -187,7 +190,7 @@ Traceback (most recent call last):
 ImportError: dlopen(/Users/hidekinakajima/Downloads/Radia-master/env/radia_python/radia.cpython-39-darwin.so, 0x0002): symbol not found in flat namespace (_fftw)
 ```
 
-### Error: `configure: error: /bin/sh ./config.sub -apple-darwinXX.X.0 failed`
+### Error: `configure: error: /bin/sh ./config.sub -apple-darwinXX.X.0 failed` or `an incompatible architecture (have 'x86_64', need 'arm64e' or 'arm64')`
 
 `make fftw` as well as `make all` might be an issue on mac with [Apple silicon](https://support.apple.com/en-us/116943) M series. To solve this issue, we have to  `cmake` based on CMakeLists.txt as described in [SRW](https://github.com/ochubar/SRW) for `arm64` cpu archtecture. In this repository, `makefile` and `CMakeLists.txt` are modified in **root**, **cpp/gcc/**, and **ext_lib/fftw/** accordingly. The following files are downloaded via `wget` during the `cmake`, so your PC should be online.
 
@@ -238,6 +241,8 @@ pip3 install accumulate
 Python 3.10 and 3.11 have an issue on Tcl/Tk that makes plot on X11 [link](https://www.python.org/download/mac/tcltk/). Python 3.9 is still safe to open plots in X11.
 
 ## Build log files
+
+[log_radia_build_py312_macos_make_all.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py312_macos_make_all.sh)
 
 [log_radia_build_py39_macos_make_all.sh](https://github.com/hidecode221b/Radia/blob/master/env/radia_python/log_radia_build_py39_macos_make_all.sh)
 

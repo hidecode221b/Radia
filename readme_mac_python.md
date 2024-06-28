@@ -69,8 +69,9 @@ python3 radia_example06.py
 
 ## Troubleshooting
 
-### Error: `fatal error: 'fpu_control.h' file not found`
+### Error: `ImportError: not valid for use in process: library load disallowed by system policy`
 
+Open system settings (in :apple: menu) - security & privacy - security - `allow anyway` to allow opening `radia.cpython-XX-darwin.so` blocked from use because it is not from an identified developer.
 
 ### Error: `fatal error: 'fpu_control.h' file not found`
 
